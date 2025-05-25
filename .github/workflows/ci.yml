@@ -1,0 +1,38 @@
+name: CI - Testes e Qualidade
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Rodar Lint (ESLint)
+        run: npm run lint
+
+      - name: Rodar testes com coverage
+        run: npm run test:ci
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage
+
+      - name: Verificar cobertura no terminal
+        run: cat coverage/lcov-report/index.html || true

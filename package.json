@@ -1,16 +1,24 @@
 {
   "name": "my-project",
   "version": "1.0.0",
-  "description": "Projeto Teste que servirá de template para outros projetos",
-  "main": "src/app.js",
+  "description": "Curso Rafael Manguinho - Node + Clean Code",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint src/**/*.js",
     "format": "prettier --write src/**/*.js",
     "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": ["standard --fix"]
   },
   "keywords": [],
   "author": "Jonas Santos",

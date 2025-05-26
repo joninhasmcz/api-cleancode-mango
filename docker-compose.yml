@@ -1,19 +1,19 @@
 version: '3.9'
 
 services:
-  api:
-    build: .
-    container_name: api-express
-    ports:
-      - "3001:3000"
-    env_file:
-      - .env
-    depends_on:
-      - mongodb
-    environment:
-      - DOCKER=true
-    volumes:
-      - .:/usr/src/app
+#  api:
+#    build: .
+#    container_name: api-express
+#    ports:
+#      - "3001:3000"
+#    env_file:
+#      - .env
+#    depends_on:
+#      - mongodb
+#    environment:
+#      - DOCKER=true
+#    volumes:
+#      - .:/usr/src/app
 
 
   mongodb:

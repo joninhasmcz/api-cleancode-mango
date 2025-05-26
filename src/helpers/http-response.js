@@ -1,6 +1,7 @@
 const MissingParamError = require('./missing-param-error')
+const UnautorizedError = require('./unautorized-error')
 
-class HttpResponse {
+module.exports = class HttpResponse {
   static badRequest(paramName) {
     return {
       statusCode: 400,
@@ -12,6 +13,12 @@ class HttpResponse {
       statusCode: 500,
     }
   }
+  static unautorizedError() {
+    return {
+      statusCode: 401,
+      body: new UnautorizedError()
+    }
+  }
+
 }
 
-module.exports = HttpResponse

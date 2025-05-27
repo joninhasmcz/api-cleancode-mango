@@ -4,4 +4,3 @@ module.exports = class MissingParamError extends Error {
     this.name = 'MissingParamError'
   }
 }
-

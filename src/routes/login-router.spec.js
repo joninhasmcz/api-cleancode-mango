@@ -6,13 +6,26 @@ const ServerError = require('../helpers/server-error')
 
 const makeSut = () => {
   const authUseCasePsy = makeAuthUseCase()
+  const emailValidatorSpy = makeEmailValidator()
   authUseCasePsy.accessToken = 'valid_token'
-  const sut = new LoginRouter(authUseCasePsy)
+  const sut = new LoginRouter(authUseCasePsy, emailValidatorSpy)
 
   return {
     sut,
-    authUseCasePsy
+    authUseCasePsy,
+    emailValidatorSpy
   }
+}
+
+const makeEmailValidator = () => {
+  class EmailValidatorSpy {
+    isValid(email) {
+      return this.isEmailValid
+    }
+  }
+  const emailValidatorSpy = new EmailValidatorSpy()
+  emailValidatorSpy.isEmailValid = true
+  return emailValidatorSpy
 }
 
 const makeAuthUseCase = () => {

@@ -8,8 +8,6 @@ module.exports = class LoginRouter {
     this.emailValidator = emailValidator
   }
 
-
-
   async route(httpRequest) {
     try {
       const { email, password } = httpRequest.body

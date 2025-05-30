@@ -1,8 +1,6 @@
 const LoginRouter = require('./login-router')
-const MissingParamError = require('../helpers/missing-param-error')
-const InvalidParamError = require('../helpers/invalid-param-error')
-const UnautorizedError = require('../helpers/unautorized-error')
-const ServerError = require('../helpers/server-error')
+const {MissingParamError, InvalidParamError, UnauthorizedError, ServerError} = require('../errors')
+
 
 const makeSut = () => {
     const authUseCasePsy = makeAuthUseCase()
@@ -133,7 +131,7 @@ describe('Login Router', () => {
         }
         const httpResponse = await sut.route(httpRequest)
         expect(httpResponse.statusCode).toBe(401)
-        expect(httpResponse.body).toEqual(new UnautorizedError())
+        expect(httpResponse.body).toEqual(new UnauthorizedError())
     })
     test('Should return 200 if valid credentials are provided', async () => {
         const {sut, authUseCasePsy} = makeSut()
@@ -240,7 +238,7 @@ describe('Login Router', () => {
             }
         }
         const httpResponse = await sut.route(httpRequest)
-        expect(httpResponse.statusCode).toBe(501)
+        expect(httpResponse.statusCode).toBe(500)
         expect(httpResponse.body).toEqual(new ServerError())
     })
     test('Should call EmailValidator with correct email', async () => {

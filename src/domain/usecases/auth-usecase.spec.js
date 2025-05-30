@@ -18,6 +18,7 @@ const makeTokenGenerator = () => {
   class TokenGeneratorSpy {
     async generate (userId) {
       this.userId = userId
+
       return this.accessToken
     }
   }

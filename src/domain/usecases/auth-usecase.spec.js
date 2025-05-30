@@ -17,10 +17,12 @@
 //   const authUseCaseSpy = makeAuthUseCaseSpy()
 // }
 
+const { MissingParamError } = require('../../utils/errors')
+
 class AuthUseCase {
   async auth(email) {
       if(!email) {
-        throw new Error('Email is required')
+        return MissingParamError('email')
       }
 
   }

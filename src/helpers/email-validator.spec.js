@@ -1,6 +1,16 @@
+jest.mock('validator', () => ({
+  isEmailValid: true,
+
+  isEmail (email) {
+    this.email = email
+    return this.isEmailValid
+  }
+}))
+
+
 const validator = require('validator')
-const { isEmailValid } = require('../__mocks__/validator')
 const EmailValidator = require('./email-validator')
+const MissingParamError = require("../utils/errors/missing-param-error");
 
 const makeSut = () => {
   return new EmailValidator()
@@ -23,4 +33,7 @@ describe('email-validator', () => {
     sut.isValid('any_mail@gmail.com')
     expect(validator.email).toBe('any_mail@gmail.com')
   })
+  test('Should throw if no email is provided', () => {
+    const sut = makeSut()
+    expect(() => { sut.isValid() }).toThrow(new MissingParamError('email'))})
 })

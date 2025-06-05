@@ -2,11 +2,11 @@
   "name": "my-project",
   "version": "1.0.0",
   "description": "Curso Rafael Manguinho - Node + Clean Code",
-  "main": "src/server.js",
+  "main": "src/main/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "test": "jest --watchAll --silent --noStackTrace --colors",
+    "start": "node src/main/index.js",
+    "dev": "nodemon src/main/index.js",
+    "test": "jest --watchAll --silent --noStackTrace --colors --watchPathIgnorePatterns=tmp,.cache,.mongodb-binaries",
     "test:unit": "npm test --  --watchAll -c jest-unit-config.js",
     "test:integration": "npm test -- --watchAll -c jest-integration-config.js",
     "test:coverage": "jest --coverage",
@@ -40,7 +40,6 @@
     "express-validator": "^7.0.1",
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongodb-memory-server": "^10.1.4",
     "mongoose": "^8.13.3",
     "validator": "^13.15.15"
   },
@@ -52,10 +51,11 @@
     "husky": "^9.1.7",
     "jest": "^29.7.0",
     "lint-staged": "^16.0.0",
+    "mongodb-memory-server": "^10.1.4",
     "nodemon": "^3.0.2",
     "prettier": "^3.2.4",
     "standard": "^17.1.2",
-    "supertest": "^7.1.0",
+    "supertest": "^7.1.1",
     "winston": "^3.17.0"
   }
 }

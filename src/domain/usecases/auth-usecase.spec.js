@@ -247,10 +247,10 @@ describe('Auth UseCase', () => {
         tokenGenerator: makeTokenGeneratorWithError()
       }),
       new AuthUseCase({
-          loadUserByEmailRepository,
-          encrypter,
-          tokenGenerator,
-          updateAccessTokenRepository: makeUpdateAccessTokenRepositoryWithError
+        loadUserByEmailRepository,
+        encrypter,
+        tokenGenerator,
+        updateAccessTokenRepository: makeUpdateAccessTokenRepositoryWithError
       })
     )
     for (const sut of suts) {

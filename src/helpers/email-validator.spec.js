@@ -7,10 +7,9 @@ jest.mock('validator', () => ({
   }
 }))
 
-
 const validator = require('validator')
 const EmailValidator = require('./email-validator')
-const MissingParamError = require("../utils/errors/missing-param-error");
+const MissingParamError = require('../utils/errors/missing-param-error')
 
 const makeSut = () => {
   return new EmailValidator()
@@ -35,5 +34,6 @@ describe('email-validator', () => {
   })
   test('Should throw if no email is provided', () => {
     const sut = makeSut()
-    expect(() => { sut.isValid() }).toThrow(new MissingParamError('email'))})
+    expect(() => { sut.isValid() }).toThrow(new MissingParamError('email'))
+  })
 })
